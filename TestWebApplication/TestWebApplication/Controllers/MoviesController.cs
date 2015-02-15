@@ -114,6 +114,19 @@ namespace TestWebApplication.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult SearchIndex(string searchString)
+        {
+            var movies = from m in db.Movies
+                         select m; // query is not executed here yet
+
+            if(!string.IsNullOrEmpty(searchString))
+            {
+                movies = movies.Where(s => s.Title.Contains(searchString));
+            }
+
+            return View(movies); 
+        }
+        
         protected override void Dispose(bool disposing)
         {
             db.Dispose();
