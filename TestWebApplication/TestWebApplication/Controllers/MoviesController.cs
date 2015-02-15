@@ -114,8 +114,17 @@ namespace TestWebApplication.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult SearchIndex(string searchString)
+        public ActionResult SearchIndex(string movieGenre, string searchString)
         {
+            var genres = new List<string>();
+
+            var genresQuery = from d in db.Movies
+                              orderby d.Genre
+                              select d.Genre;
+
+            genres.AddRange(genresQuery.Distinct());
+            ViewBag.movieGenre = new SelectList(genres); // passes select list to viewbag in order to render
+            
             var movies = from m in db.Movies
                          select m; // query is not executed here yet
 
@@ -124,7 +133,14 @@ namespace TestWebApplication.Controllers
                 movies = movies.Where(s => s.Title.Contains(searchString));
             }
 
-            return View(movies); 
+            if(string.IsNullOrEmpty(movieGenre))
+            {
+                return View(movies);
+            }
+            else
+            {
+                return View(movies.Where(s => s.Genre == movieGenre));
+            }
         }
         
         protected override void Dispose(bool disposing)

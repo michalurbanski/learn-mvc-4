@@ -9,8 +9,15 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 
+    @*Post method always is treated as get - this allows to bookmark pages with search results*@
     @using(Html.BeginForm("SearchIndex", "Movies", FormMethod.Get)){
-        <p>Title: @Html.TextBox("SearchString") <br/>
+        <p>
+            @*movieGenre variable is placed in viewbag in controller*@
+            @*second paramater is label and has value of empty string - so searches in this way among all genres
+              other options when page is rendered has no value and option tag content is passed as value to the controller*@
+            
+            Genre: @Html.DropDownList("movieGenre", "All") 
+            Title: @Html.TextBox("SearchString") <br/>
             <input type="submit" value="Filter"/>
         </p>
     }
