@@ -197,6 +197,10 @@
     <Compile Include="Migrations\201502221829392_Initial.Designer.cs">
       <DependentUpon>201502221829392_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201502221838505_AddRatingMigration.cs" />
+    <Compile Include="Migrations\201502221838505_AddRatingMigration.Designer.cs">
+      <DependentUpon>201502221838505_AddRatingMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Movie.cs" />
@@ -685,6 +689,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201502221829392_Initial.resx">
       <DependentUpon>201502221829392_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502221838505_AddRatingMigration.resx">
+      <DependentUpon>201502221838505_AddRatingMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
